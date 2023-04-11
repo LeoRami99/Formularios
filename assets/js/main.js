@@ -39,7 +39,7 @@ const getDepartamentos = async () => {
         }
 
 
-        option.value = element.cod_depto;
+        option.value = element.dpto;
         option.text = element.dpto;
         selectDepartamentos.appendChild(option);
     });
@@ -52,17 +52,16 @@ const selectMunicipios = document.getElementById("municipios");
 // hacer que cuando se seleccione un departamento se muestren los municipios con jquery
 $("#departamentos").change(function () {
     selectMunicipios.innerHTML = "";
-    let cod_depto = $(this).val();  
-    let url ='https://www.datos.gov.co/resource/gdxc-w37w.json?cod_depto='+cod_depto;
+    let depto = $(this).val();  
+    let url ='https://www.datos.gov.co/resource/gdxc-w37w.json?dpto='+depto;
     $.ajax({
         url: url,
         type: "GET",
         success: function (response) {
            let data = response;
-           let dataLength = data.length;
            data.forEach(element => {
                 let option = document.createElement("option");
-                option.value = element.cod_mpio;
+                option.value = `${element.cod_mpio +"-"+ element.nom_mpio}`;
                 option.text = element.nom_mpio;
                 selectMunicipios.appendChild(option);
            });
@@ -118,6 +117,7 @@ partidos_politicos.forEach(element => {
     div.classList.add("form-check", "m-2");
     let input = document.createElement("input");
     input.classList.add("form-check-input", "hide-radio");
+    input.setAttribute("required", true);
     input.type = "radio";
     input.name = "partido_politico";
     input.id = element.sigla;
@@ -148,7 +148,6 @@ partidos_politicos.forEach(element => {
     div.appendChild(label);
     divPartidosPoliticos.appendChild(div);
 });
-
 // Estilos CSS para la clase adicional "selected"
 const selectedStyles = `
   border-radius: 10px;
@@ -171,6 +170,39 @@ style.innerHTML = `
   }
 `;
 document.head.appendChild(style);
+
+const aspirante = document.querySelector("#aspirante");
+const militante = document.querySelector("#militante");
+// selector
+const selector_aspirante = document.querySelector("#cargo_asp");
+// textarea
+const textarea_militante = document.querySelector("#info_militante");
+
+$("#aspirante_militante").change(function() {
+    switch ($(this).val()) {
+        case "aspirante":
+            aspirante.classList.remove("d-none");
+            militante.classList.add("d-none");
+            // y hacer un disbale de los campos de militante
+            textarea_militante.disabled = true;
+            selector_aspirante.disabled = false;
+            break;
+        case "militante":
+            aspirante.classList.add("d-none");
+            militante.classList.remove("d-none");
+            selector_aspirante.disabled = true;
+            textarea_militante.disabled = false;
+            break;
+        case "ambos":
+            aspirante.classList.remove("d-none");
+            militante.classList.remove("d-none");
+            selector_aspirante.disabled = false;
+            textarea_militante.disabled = false;
+            break;
+        default:
+            break;
+    }
+})
 
 
 

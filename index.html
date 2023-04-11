@@ -1,390 +1,280 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<title>Formularios</title>
-		<!-- Required meta tags -->
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, shrink-to-fit=no"
-		/>
 
-		<!-- Bootstrap CSS v5.2.1 -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-		/>
-		<!-- Estilos base  -->
-		<link rel="stylesheet" href="assets/css/styles.css" />
-	</head>
-	<body>
-		<header>
-			<!-- <nav class="navbar navbar-expand navbar-light bg-light">
+<head>
+	<title>Formularios</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<!-- Bootstrap CSS v5.2.1 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<!-- Estilos base  -->
+	<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+	<header>
+		<!-- <nav class="navbar navbar-expand navbar-light bg-light">
                 <div class="nav navbar-nav">
                     <a class="nav-item nav-link active" href="#" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
                     <a class="nav-item nav-link" href="#">Home</a>
                 </div>
             </nav> -->
-		</header>
-		<main>
-			<div
-				class="d-flex justify-content-center animate__animated animate__fadeInDown animate__delay-1s"
-			>
-				<div
-					class="w-100 shadow-sm rounded border m-5 formulario_politica"
-				>
-					<h1 class="text-center m-5">Formulario de vinculación</h1>
-					<hr class="mx-5" />
-					<form action="GET" class="m-5">
-						<div class="row">
-							<div
-								class="col border m-2 rounded shadow animate__animated animate__fadeInUp animate__delay-2s partido_politico"
-							>
-								<h2 class="text-center m-5">Colectividad</h2>
+	</header>
+	<main>
+		<div class="d-flex justify-content-center animate__animated animate__fadeInDown animate__delay-1s">
+			<div class="w-100 shadow-sm rounded border m-5 formulario_politica">
+				<h1 class="text-center m-5">Formulario de vinculación</h1>
+				<hr class="mx-5" />
+				<form action="GET" class="m-5 needs-validation">
+					<div class="row">
+						<div
+							class="col border m-2 rounded shadow animate__animated animate__fadeInUp animate__delay-2s partido_politico">
+							<h2 class="text-center m-5">Colectividad</h2>
+							<hr class="mx-5" />
+							<div class="partido_politico text-center overflow-auto" id="partido_politico"></div>
+							
+						</div>
+						<div
+							class="col border m-2 rounded shadow animate__animated animate__fadeInUp animate__delay-3s">
+							<div class="datos-formulario">
+								<h2 class="text-center">
+									Datos del Solicitante
+								</h2>
 								<hr class="mx-5" />
-								<div
-									class="partido_politico text-center overflow-auto"
-									id="partido_politico"
-								></div>
-							</div>
-							<div
-								class="col border m-2 rounded shadow animate__animated animate__fadeInUp animate__delay-3s"
-							>
-								<div class="datos-formulario">
-									<h2 class="text-center">
-										Datos del Solicitante
-									</h2>
-									<hr class="mx-5" />
-									<div class="mb-3">
-										<!-- aspirante o militante -->
-										<label for="aspirante"
-											>Aspirante o Militante</label
-										>
-										<select
-											name=""
-											id="aspirante"
-											class="form-select"
-										>
-											<option
-												value=""
-												selected
-												disabled
-												hidden
-											>
-												Aspirante o Militante
-											</option>
-											<option value="aspirante">
-												Aspirante
-											</option>
-											<option value="militante">
-												Militante
-											</option>
-                                            <option value="ambos">Ambos</option>
-										</select>
-									</div>
-									<div class="mb-3">
-										<label for="tipo_doc"
-											>Tipo de Documento</label
-										>
-										<select
-											name=""
-											id="tipo_doc"
-											class="form-select"
-										>
-											<option
-												value=""
-												selected
-												disabled
-												hidden
-											>
-												Tipo de Documento
-											</option>
-											<option value="CC">
-												Cédula de ciudadanía
-											</option>
-											<option value="CE">
-												Cédula de extranjería
-											</option>
-											<option value="PP">
-												Pasaporte
-											</option>
-											<option value="TI">
-												Tarjeta de Identidad
-											</option>
-										</select>
-									</div>
-									
-									<div class="mb-3">
-										<label for="num_identificacion"
-											>Número de Identificación</label
-										>
-										<input
-											type="number"
-											class="form-control"
-											id="num_identificacion"
-											placeholder="Número de Identificación"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="fecha_exp">Fecha de expedición del documento</label>
-										<input type="date" class="form-control" id="fecha_exp">
-									</div>
-									<div class="mb">
-										<label for="ciudad_exp">Ciudad de expedición</label>
-										<input type="text" placeholder="Ciudad de expedición del documento" class="form-control" id="ciudad_exp">
-									</div>
-									<div class="mb-3">
-										<label for="nombre">Nombres</label>
-										<input
-											type="text"
-											class="form-control"
-											id="nombre"
-											placeholder="Nombres"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="apellido">Apellidos</label>
-										<input
-											type="text"
-											class="form-control"
-											id="apellido"
-											placeholder="Apellidos"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="genero">Género</label>
-										<select
-											name="genero"
-											id="genero"
-											class="form-select"
-										>
-											<option
-												value=""
-												selected
-												disabled
-												hidden
-											>
-												Género
-											</option>
-											<option value="M">Masculino</option>
-											<option value="F">Femenino</option>
-										</select>
-									</div>
-                                    <div class="mb-3">
-										<label for="fecha_nacimiento"
-											>Fecha de Nacimiento</label
-										>
-										<input
-											type="date"
-											class="form-control"
-											id="fecha_nacimiento"
-										/>
-									</div>
-                                    <div class="mb-3">
-										<label for="n_educativo">Nivel Educativo
-                                            <small style="color:red;">*</small>
-                                        </label>
-										<select
-											name="n_educativo"
-											id="n_educativo"
-											class="form-select"
-										>
-											<option
-												value=""
-												selected
-												disabled
-												hidden
-											>
-												Estudios
-											</option>
-											<option value="Básica primaria">
-												Básica Primaria
-											</option>
-											<option value="Básica secundaria">
-												Básica Secundaria
-											</option>
-											<option value="Media">Media</option>
-											<option value="Ténica">
-												Técnica
-											</option>
-											<option value="Profesional">
-												Profesional
-											</option>
-											<option value="Especialización">
-												Especialización
-											</option>
-											<option value="Maestría">
-												Maestría
-											</option>
-											<option value="Doctorado">
-												Doctorado
-											</option>
-										</select>
-									</div>
-                                    <div class="mb-3">
-										<label for="oficio">Oficio</label>
-										<input
-											type="text"
-											class="form-control"
-											placeholder="Oficio"
-											id="oficio"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="poblacion"
-											>Tipo de Población</label
-										>
-										<select
-											name="poblacion"
-											id="poblacion"
-											class="form-select"
-										>
-											<!-- poblacion -->
-											<option
-												value=""
-												selected
-												disabled
-												hidden
-											>
-												Población
-											</option>
-											<option value="General">
-												General
-											</option>
-											<option value="Afrodescendiente">
-												Afrodescendiente
-											</option>
-											<option value="Indígena">
-												Indígena
-											</option>
-											<option value="Raizal">
-												Raizal
-											</option>
-											<option value="RROM">RROM</option>
-										</select>
-									</div>
-									<div class="mb-3">
-										<label for="numero_celular"
-											>Número de celular</label
-										>
-										<input
-											type="number"
-											class="form-control"
-											id="numero_celular"
-											name="celular"
-											placeholder="Número de celular"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="email"
-											>Correo Electrónico</label
-										>
-										<input
-											type="email"
-											name="email"
-											id="email"
-											class="form-control"
-											placeholder="Correo Electrónico"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="pais">País</label>
-										<input
-											type="text"
-											class="form-control"
-											id="pais"
-											placeholder="País"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="departamentos"
-											>Departamento</label
-										>
-										<select
-											name="departamento"
-											class="form-select"
-											id="departamentos"
-										></select>
-									</div>
-									<div class="mb-3">
-										<label for="municipios"
-											>Municipio</label
-										>
-										<select
-											name="municipio"
-											class="form-select"
-											id="municipios"
-										></select>
-									</div>
-									<div class="mb-3">
-										<label for="direccion"
-											>Dirección de la residencia</label
-										>
-										<input
-											type="text"
-											name="direccion"
-											class="form-control"
-											placeholder="Dirección de la residencia"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="localidad">Localidad</label>
-										<input
-											type="text"
-											class="form-control"
-											id="localidad"
-											placeholder="Localidad o comuna"
-										/>
-									</div>
-									<div class="mb-3">
-										<label for="oficio">Oficio</label>
-										<input
-											type="text"
-											class="form-control"
-											placeholder="Oficio"
-											id="oficio"
-										/>
-									</div>
-									
-									<button
-										type="submit"
-										class="btn btn-primary w-100"
-									>
-										Enviar
-									</button>
+								<div class="mb-3">
+									<!-- aspirante o militante -->
+									<label for="aspirante_militante" class="form-label">Aspirante o Militante
+										<small style="color: red">*</small></label>
+									<select name="" id="aspirante_militante" class="form-select" required>
+										<option value="" selected disabled hidden>
+											Aspirante o Militante
+										</option>
+										<option value="aspirante">
+											Aspirante
+										</option>
+										<option value="militante">
+											Militante
+										</option>
+										<option value="ambos">Ambos</option>
+									</select>
 								</div>
+								<div class="mb-3 d-none" id="aspirante">
+									<label for="cargo_asp" class="form-label">
+										Cargo al que aspira
+										<small style="color: red">*</small>
+									</label>
+									<select name="cargo_asp" id="cargo_asp" class="form-select" required>
+										<option value="" selected disabled hidden>
+											Cargo al que aspira
+										</option>
+										<option value="JAL">JAL</option>
+										<option value="CONCEJO">
+											CONCEJO
+										</option>
+										<option value="ALCALDÍA">
+											ALCALDÍA
+										</option>
+										<option value="ASAMBLEA">
+											ASAMBLEA
+										</option>
+										<option value="GOBERNACIÓN">
+											GOBERNACIÓN
+										</option>
+										<option value="CMJ">CMJ</option>
+									</select>
+								</div>
+								<div class="mb-3 d-none" id="militante">
+									<label for="info_militante" class="form-label">Actividades que desea realizar como
+										militante
+										<small style="color: red">*</small></label>
+									<textarea name="info_militante" id="info_militante" cols="30" rows="5"
+										class="form-control" required></textarea>
+								</div>
+								<div class="mb-3">
+									<label for="tipo_doc" class="form-label">Tipo de Documento
+										<small style="color: red">*</small></label>
+									<select name="" id="tipo_doc" class="form-select" required>
+										<option value="" selected disabled hidden>
+											Tipo de Documento
+										</option>
+										<option value="CC">
+											Cédula de ciudadanía
+										</option>
+										<option value="CE">
+											Cédula de extranjería
+										</option>
+										<option value="PP">
+											Pasaporte
+										</option>
+										<option value="TI">
+											Tarjeta de Identidad
+										</option>
+									</select>
+								</div>
+
+								<div class="mb-3">
+									<label for="num_identificacion" class="form-label">Número de Identificación
+										<small style="color: red">*</small></label>
+									<input required type="number" class="form-control" id="num_identificacion"
+										placeholder="Número de Identificación" />
+								</div>
+								<div class="mb-3">
+									<label for="fecha_exp" class="form-label">Fecha de expedición del
+										documento<small style="color: red">*</small></label>
+									<input required type="date" class="form-control" id="fecha_exp" />
+								</div>
+								<div class="mb">
+									<label for="ciudad_exp" class="form-label">Ciudad de expedición<small
+											style="color: red">*</small></label>
+									<input required type="text" placeholder="Ciudad de expedición del documento"
+										class="form-control" id="ciudad_exp" />
+								</div>
+								<div class="mb-3">
+									<label for="nombre" class="form-label">Nombres<small style="color: red">*</small></label>
+									<input required type="text" class="form-control" id="nombre" placeholder="Nombres" />
+								</div>
+								<div class="mb-3">
+									<label for="apellido" class="form-label">Apellidos<small style="color: red">*</small></label>
+									<input required type="text" class="form-control" id="apellido"
+										placeholder="Apellidos" />
+								</div>
+								<div class="mb-3">
+									<label for="genero" class="form-label">Género<small style="color: red">*</small></label>
+									<select name="genero" id="genero" class="form-select" required>
+										<option value="" selected disabled hidden>
+											Género
+										</option>
+										<option value="M">Masculino</option>
+										<option value="F">Femenino</option>
+									</select>
+								</div>
+
+								<div class="mb-3">
+									<label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento<small
+											style="color: red">*</small></label>
+									<input required type="date" class="form-control" id="fecha_nacimiento" />
+								</div>
+								<div class="mb-3">
+									<label for="n_educativo" class="form-label">Nivel Educativo
+										<small style="color: red">*</small>
+									</label>
+									<select name="n_educativo" id="n_educativo" class="form-select" required>
+										<option value="" selected disabled hidden>
+											Estudios
+										</option>
+										<option value="Básica primaria">
+											Básica Primaria
+										</option>
+										<option value="Básica secundaria">
+											Básica Secundaria
+										</option>
+										<option value="Media">Media</option>
+										<option value="Ténica">
+											Técnica
+										</option>
+										<option value="Profesional">
+											Profesional
+										</option>
+										<option value="Especialización">
+											Especialización
+										</option>
+										<option value="Maestría">
+											Maestría
+										</option>
+										<option value="Doctorado">
+											Doctorado
+										</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="oficio" class="form-label">Oficio<small style="color: red">*</small></label>
+									<input required type="text" class="form-control" placeholder="Oficio" id="oficio" />
+								</div>
+								<div class="mb-3">
+									<label for="poblacion" class="form-label">Tipo de Población<small style="color: red">*</small></label>
+									<select name="poblacion" id="poblacion" class="form-select" required>
+										<!-- poblacion -->
+										<option value="" selected disabled hidden>
+											Población
+										</option>
+										<option value="General">
+											General
+										</option>
+										<option value="Afrodescendiente">
+											Afrodescendiente
+										</option>
+										<option value="Indígena">
+											Indígena
+										</option>
+										<option value="Raizal">
+											Raizal
+										</option>
+										<option value="RROM">RROM</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="numero_celular" class="form-label">Número de celular<small
+											style="color: red">*</small></label>
+									<input required type="number" class="form-control" id="numero_celular" name="celular"
+										placeholder="Número de celular" />
+								</div>
+								<div class="mb-3">
+									<label for="email" class="form-label">Correo Electrónico<small style="color: red">*</small></label>
+									<input required type="email" name="email" id="email" class="form-control"
+										placeholder="Correo Electrónico" />
+								</div>
+								<div class="mb-3">
+									<label for="pais" class="form-label">País<small style="color: red">*</small></label>
+									<input required type="text" class="form-control" id="pais" placeholder="País" />
+								</div>
+								<div class="mb-3" class="form-label">
+									<label for="departamentos">Departamento<small style="color: red">*</small></label>
+									<select name="departamento" class="form-select" id="departamentos" required></select>
+								</div>
+								<div class="mb-3" class="form-label">
+									<label for="municipios">Municipio<small style="color: red">*</small></label>
+									<select name="municipio" class="form-select" id="municipios" required></select>
+								</div>
+								<div class="mb-3" class="form-label">
+									<label for="direccion">Dirección de la residencia<small
+											style="color: red">*</small></label>
+									<input required type="text" name="direccion" class="form-control"
+										placeholder="Dirección de la residencia" />
+								</div>
+								<div class="mb-3" class="form-label">
+									<label for="localidad">Localidad<small style="color: red">*</small></label>
+									<input required type="text" class="form-control" id="localidad"
+										placeholder="Localidad o comuna" />
+								</div>
+								<button type="submit" class="btn btn-primary w-100">
+									Enviar
+								</button>
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+				</form>
+				
 			</div>
-		</main>
-		<footer>
-			<!-- place footer here -->
-		</footer>
-		<script
-			src="https://code.jquery.com/jquery-3.6.4.min.js"
-			integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-			crossorigin="anonymous"
-		></script>
-		<script src="assets/js/main.js"></script>
-		<!-- Bootstrap JavaScript Libraries -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-			integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-			crossorigin="anonymous"
-		></script>
+		</div>
+	</main>
+	<footer>
+		<!-- place footer here -->
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+	<script src="assets/js/main.js"></script>
+	<!-- Bootstrap JavaScript Libraries -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-			integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-			crossorigin="anonymous"
-		></script>
-	</body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+		crossorigin="anonymous"></script>
+</body>
+
 </html>
