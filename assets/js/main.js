@@ -82,11 +82,17 @@ const partidos_politicos = [
     //     "sigla": "CD",
     //     "logo": "https://www.centrodemocratico.com/wp-content/uploads/2019/05/cropped-logo-1.png",
     // },
+    // {
+    //     "nombre": "Colombia Humana",
+    //     "sigla": "CH",
+    //     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_Colombia_Humana.png/220px-Logo_Colombia_Humana.png",
+    // },
     {
-        "nombre": "Colombia Humana",
-        "sigla": "CH",
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_Colombia_Humana.png/220px-Logo_Colombia_Humana.png",
-    },
+        "nombre":"Fuerza Ciudadana",
+        "sigla": "FC",
+        "logo": "https://fuerzaciudadana.com.co/wp-content/uploads/2022/05/LOGOFUERZA.png"
+
+    }
     // {
     //     "nombre": "Colombia Humana",
     //     "sigla": "CH",
@@ -127,6 +133,8 @@ partidos_politicos.forEach(element => {
     label.for = element.sigla;
     let img = document.createElement("img");
     img.src = element.logo;
+    img.classList.add("img-fluid");
+    img.width = 200;
     img.alt = element.nombre;
     label.appendChild(img); // Envolvemos la imagen en la etiqueta label
     let span = document.createElement("p");
