@@ -61,7 +61,7 @@ $("#departamentos").change(function () {
            let data = response;
            data.forEach(element => {
                 let option = document.createElement("option");
-                option.value = `${element.cod_mpio +"-"+ element.nom_mpio}`;
+                option.value = element.nom_mpio;
                 option.text = element.nom_mpio;
                 selectMunicipios.appendChild(option);
            });
@@ -90,7 +90,7 @@ const partidos_politicos = [
     {
         "nombre":"Fuerza Ciudadana",
         "sigla": "FC",
-        "logo": "https://fuerzaciudadana.com.co/wp-content/uploads/2022/05/LOGOFUERZA.png"
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Fuerza_Ciudadana_%28Colombia%29_2.svg/200px-Fuerza_Ciudadana_%28Colombia%29_2.svg.png"
 
     }
     // {

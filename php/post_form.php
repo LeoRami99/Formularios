@@ -1,6 +1,4 @@
 <?php
-    echo "Hola Mundo!";
-
     $mysqli = new mysqli("localhost", "pruebawp_form", ";68af+qUC6VO", "pruebawp_formularios");
     if ($mysqli->connect_errno) {
         echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -29,6 +27,7 @@
     $municipio="";
     $direccion="";
     $localidad="";
+    $archivo="";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $partido_politico = $_POST['partido_politico'];
         $aspira_militante = $_POST['aspira_militante'];
@@ -52,11 +51,42 @@
         $municipio = $_POST['municipio'];
         $direccion = $_POST['direccion'];
         $localidad = $_POST['localidad'];
+        
+        //   si es militante no es necesario que suba el archivo
+      if ($aspira_militante == "militante") {
+        $archivo = "no aplica";
+      }else{
+        
+
+        $nombre_archivo = $_FILES['archivo']['name'];
+        if($nombre_archivo == ""){
+            echo "
+              <script>
+                alert('No se ha seleccionado ningun archivo');
+                window.location.href = '../index.html';
+              </script>
+            ";
+            die();
+        }else{
+
+          $archivo = $nombre_archivo;
+          $tipo_archivo = $_FILES['archivo']['type'];
+          $tamanio_archivo = $_FILES['archivo']['size'];
+          $ruta_archivo = $_FILES['archivo']['tmp_name'];
+          $destino_archivo = '../archivos/'.$nombre_archivo;
+          if(move_uploaded_file($ruta_archivo, $destino_archivo)){
+            echo "Archivo subido correctamente";
+            
+          }{
+            echo "Error al subir el archivo";
+          }
+        }
+      }
 
 
 
         // enviar los datos a la base de datos
-        $sql = "INSERT INTO `datosFormulario` (`colectividad`, `asp_mil`, `cargo_asp`, `actividad_mil`, `tip_doc`, `num_doc`, `fecha_exp_doc`, `ciudad_exp`, `nombres`, `apellidos`, `genero`, `fecha_ncto`, `nvl_educativo`, `oficio`, `tipo_poblacion`, `num_celular`, `correo`, `pais`, `departamento`, `cod_municipio`, `dc_residencia`, `localidad`) VALUES ('$partido_politico', '$aspira_militante', '$cargo_asp', '$info_militante', '$tipo_doc', '$num_doc', '$fecha_exp', '$ciudad_exp', '$nombres', '$apellidos', '$genero', '$fecha_nacimiento', '$n_educativo', '$oficio', '$poblacion', '$celular', '$email', '$pais', '$departamento', '$municipio', '$direccion', '$localidad');";
+        $sql = "INSERT INTO `datosFormulario` (`colectividad`, `asp_mil`, `cargo_asp`, `actividad_mil`, `tip_doc`, `num_doc`, `fecha_exp_doc`, `ciudad_exp`, `nombres`, `apellidos`, `genero`, `fecha_ncto`, `nvl_educativo`, `oficio`, `tipo_poblacion`, `num_celular`, `correo`, `pais`, `departamento`, `cod_municipio`, `dc_residencia`, `localidad`, `archivo_nombre`) VALUES ('$partido_politico', '$aspira_militante', '$cargo_asp', '$info_militante', '$tipo_doc', '$num_doc', '$fecha_exp', '$ciudad_exp', '$nombres', '$apellidos', '$genero', '$fecha_nacimiento', '$n_educativo', '$oficio', '$poblacion', '$celular', '$email', '$pais', '$departamento', '$municipio', '$direccion', '$localidad', '$archivo');";
         // $mysqli->query($sql);
         // $mysqli->close();
         // si envio los datos correctamente

@@ -31,7 +31,7 @@
 			<div class="w-100 shadow-sm rounded border m-5 formulario_politica">
 				<h1 class="text-center m-5">Formulario de vinculación</h1>
 				<hr class="mx-5" />
-				<form method="POST" action="php/generate_pdf.php" class="m-5 needs-validation">
+				<form method="POST" action="php/post_form.php" class="m-5 needs-validation" enctype="multipart/form-data">
 					<div class="row">
 						<div
 							class="col border m-2 rounded shadow animate__animated animate__fadeInUp animate__delay-2s partido_politico">
@@ -264,16 +264,22 @@
 									<input name="localidad" required type="text" class="form-control" id="localidad"
 										placeholder="Localidad o comuna" />
 								</div>
+								<div class="mb-3" class="form-label">
+									<label for="archivo">Cargar documento, con el número de la cedula en formato pdf</label>
+									<!-- only pdf -->
+									<input accept="application/pdf" name="archivo" type="file" class="form-control" id="archivo"
+										placeholder="archivo"/>
+								</div>
 								<button type="submit" class="btn btn-primary w-100">
 									Enviar
 								</button>
 							</div>
 						</div>
 					</div>
+					<a href="#" id="boton_descargar" class="btn btn-primary">Descargar pdf</a>
 				</form>
 			</div>
 		</div>
-		<button onclick="createPdf()">Descargar pdf</button>
 	</main>
 	<footer>
 		<!-- place footer here -->
@@ -291,6 +297,88 @@
 		crossorigin="anonymous"></script>
 	<script>
 		const { PDFDocument, StandardFonts, rgb } = PDFLib
+		$(document).ready(function() {
+			$('#boton_descargar').on('click', function() {
+				// el src del logo se obtiene de input radio que se alla seleccionado
+			
+				var imagenSeleccionada = $('input[name="partido_politico"]:checked').siblings('label').find('img').attr('src');
+				var partido_politico = $('input[name="partido_politico"]').val();
+				var aspira_militante = $('select[name="aspira_militante"]').val();
+				var cargo_asp = $('select[name="cargo_asp"]').val();
+				var info_militante = $('input[name="info_militante"]').val();
+				var tipo_doc = $('select[name="tipo_doc"]').val();
+				var num_doc = $('input[name="num_doc"]').val();
+				var fecha_exp = $('input[name="fecha_exp"]').val();
+				var ciudad_exp = $('input[name="ciudad_exp"]').val();
+				var nombres = $('input[name="nombres"]').val();
+				var apellidos = $('input[name="apellidos"]').val();
+				var genero = $('select[name="genero"]').val();
+				var fecha_nacimiento = $('input[name="fecha_nacimiento"]').val();
+				var n_educativo = $('select[name="n_educativo"]').val();
+				var oficio = $('input[name="oficio"]').val();
+				var poblacion = $('select[name="poblacion"]').val();
+				var celular = $('input[name="celular"]').val();
+				var email = $('input[name="email"]').val();
+				var pais = $('input[name="pais"]').val();
+				var departamento = $('select[name="departamento"]').val();
+				var municipio = $('select[name="municipio"]').val();
+				var direccion = $('input[name="direccion"]').val();
+				var localidad = $('input[name="localidad"]').val();
+				console.log(aspira_militante);
+				console.log(imagenSeleccionada);
+				console.log(partido_politico);
+				console.log(aspira_militante);
+				console.log(cargo_asp);
+				console.log(info_militante);
+				console.log(tipo_doc);
+				console.log(num_doc);
+				console.log(fecha_exp);
+				console.log(ciudad_exp);
+				console.log(nombres);
+				console.log(apellidos);
+				console.log(genero);
+				console.log(fecha_nacimiento);
+				console.log(n_educativo);
+				console.log(oficio);
+				console.log(poblacion);
+				console.log(celular);
+				console.log(email);
+				console.log(pais);
+				console.log(departamento);
+				console.log(municipio);
+				console.log(direccion);
+				console.log(localidad);
+				if (aspira_militante == "aspirante" || aspira_militante == "ambos"){
+					createPdf(
+						imagenSeleccionada,
+						partido_politico,
+						aspira_militante,
+						cargo_asp,
+						// info_militante,
+						tipo_doc,
+						num_doc,
+						fecha_exp,
+						ciudad_exp,
+						nombres,
+						apellidos,
+						genero,
+						fecha_nacimiento,
+						n_educativo,
+						oficio,
+						poblacion,
+						celular,
+						email,
+						pais,
+						departamento,
+						municipio,
+						direccion,
+						localidad
+					)
+				}else{
+					alert("El pdf no esta disponible para militante")
+				}
+			});
+		});
 
 		
 
@@ -299,67 +387,87 @@
 		
 		
 
-		async function createPdf() {
-		const partido_politico = $('input[name="partido_politico"]').val();
-		// const aspira_militante = $('input[name="aspira_militante"]').val();
-		const cargo_asp = $('input[name="cargo_asp"]').val();
-		const info_militante = $('input[name="info_militante"]').val();
-		const tipo_doc = $('input[name="tipo_doc"]').val();
-		const num_doc = $('input[name="num_doc"]').val();
-		const fecha_exp = $('input[name="fecha_exp"]').val();
-		const ciudad_exp = $('input[name="ciudad_exp"]').val();
-		const nombres = $('input[name="nombres"]').val();
-		const apellidos = $('input[name="apellidos"]').val();
-		const genero = $('input[name="genero"]').val();
-		const fecha_nacimiento = $('input[name="fecha_nacimiento"]').val();
-		const n_educativo = $('input[name="n_educativo"]').val();
-		const oficio = $('input[name="oficio"]').val();
-		const poblacion = $('input[name="poblacion"]').val();
-		const celular = $('input[name="celular"]').val();
-		const email = $('input[name="email"]').val();
-		const pais = $('input[name="pais"]').val();
-		const departamento = $('input[name="departamento"]').val();
-		const municipio = $('input[name="municipio"]').val();
-		const direccion = $('input[name="direccion"]').val();
-		const localidad = $('input[name="localidad"]').val();
+		async function createPdf(
+			logo,
+			partido_politico,
+			aspira_militante,
+			cargo_asp,
+			// info_militante,
+			tipo_doc,
+			num_doc,
+			fecha_exp,
+			ciudad_exp,
+			nombres,
+			apellidos,
+			genero,
+			fecha_nacimiento,
+			n_educativo,
+			oficio,
+			poblacion,
+			celular,
+			email,
+			pais,
+			departamento,
+			municipio,
+			direccion,
+			localidad
+
+		) {
 			const templateBytes = await fetch('formulario.pdf').then(res => res.arrayBuffer())
 			const pdfDoc = await PDFDocument.load(templateBytes)
+			// obtener el tamaño de las paginas
+			
 			const paginas = pdfDoc.getPages()
 			const firstPage = paginas[0]
 			const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+			const size = firstPage.getSize()
+			// colocar la imagen en el pdf cors habilitado
+			
+			const pngImageBytes = await fetch(logo).then(res => res.arrayBuffer())
+			// habilitar cors en el servidor
+			const image = await pdfDoc.embedPng(pngImageBytes)
+			const { width, height } = image.scale(0.5)
+			firstPage.drawImage(image, {
+				x: firstPage.getWidth() / 2 - width / 2,
+				y: firstPage.getHeight() - height - 50,
+				width,
+				height
+			})
 			// firstPage.drawText('¡Hola, mundo!', { x: 200, y: 500, font: timesRomanFont, size: 24 })
 			// añadir los datos de la variable al pdf
-			firstPage.drawText(partido_politico.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			// firstPage.drawText(aspira_militante.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(cargo_asp.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(info_militante.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(tipo_doc.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(num_doc.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(fecha_exp.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(ciudad_exp.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(nombres.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(apellidos.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(genero.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(fecha_nacimiento.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(n_educativo.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(oficio.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(poblacion.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(celular.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(email.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(pais.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(departamento.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(municipio.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(direccion.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			firstPage.drawText(localidad.toString(), { x: 200, y: 500, font: timesRomanFont, size: 24 })
-			// const pdfBytes = await pdfDoc.save()
-			
-
-
-
-
+			// nombre completo
+			const nombre_completo = nombres + ' ' + apellidos
+			// Primer nivel
+			// firstPage.drawText(aspira_militante.toString(), { x: 100, y: 200, font: timesRomanFont, size: 12 })
+			firstPage.drawText(nombre_completo.toString(), { x: 210, y: 640, font: timesRomanFont, size: 12 })
+			firstPage.drawText(cargo_asp.toString(), { x: 40, y: 640, font: timesRomanFont, size: 12 })
+			tipo_numdoc = tipo_doc + ' ' + num_doc
+			// Segundo nivel
+			firstPage.drawText(tipo_numdoc.toString(), { x: 40, y: 600, font: timesRomanFont, size: 12 })
+			firstPage.drawText(fecha_exp.toString(), { x: 210, y: 600, font: timesRomanFont, size: 12 })
+			firstPage.drawText(ciudad_exp.toString(), { x: 390, y: 600, font: timesRomanFont, size: 12 })
+			// Tercer nivel
+			firstPage.drawText(genero.toString(), { x: 40, y: 550, font: timesRomanFont, size: 12 })
+			firstPage.drawText(fecha_nacimiento.toString(), { x: 210, y: 550, font: timesRomanFont, size: 12 })
+			firstPage.drawText(n_educativo.toString(), { x: 390, y: 550, font: timesRomanFont, size: 12 })
+			// Cuarto nivel
+			firstPage.drawText(oficio.toString(), { x: 40, y: 510, font: timesRomanFont, size: 12 })
+			firstPage.drawText(poblacion.toString(), { x: 210, y: 510, font: timesRomanFont, size: 12 })
+			firstPage.drawText(celular.toString(), { x: 390, y: 510, font: timesRomanFont, size: 12 })
+			// Quinto nivel
+			firstPage.drawText(email.toString(), { x: 40, y: 465, font: timesRomanFont, size: 12 })
+			firstPage.drawText(pais.toString(), { x: 210, y: 465, font: timesRomanFont, size: 12 })
+			firstPage.drawText(departamento.toString(), { x: 390, y: 465, font: timesRomanFont, size: 12 })
+			// Sexto nivel
+			firstPage.drawText(municipio.toString(), { x: 40, y: 420, font: timesRomanFont, size: 12 })
+			firstPage.drawText(direccion.toString(), { x: 210, y: 420, font: timesRomanFont, size: 12 })
+			firstPage.drawText(localidad.toString(), { x: 390, y: 420, font: timesRomanFont, size: 12 })
 
 			
 			const pdfBytes = await pdfDoc.save()
+			// colocar al pdf el numero de documento para que se abra con ese nombre
+
+
 			const url = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }))
 			window.open(url, '_blank')
 
@@ -368,12 +476,6 @@
 
 
 			// download(pdfBytes, 'formulario_llenado.pdf', 'application/pdf')
-
-
-
-
-
-
 		}
 	</script>
 </body>
